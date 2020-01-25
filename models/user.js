@@ -21,10 +21,6 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String
-    },
-    admin: {
-        type: Boolean,
-        default: false
     }
 });
 
