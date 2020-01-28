@@ -32,4 +32,4 @@ router.router('/')
     }).catch(next);
 
 });
-module.exports = mongoose.model('reminder', reminderSchema);
+module.exports = mongoose.model('reminder', remindersSchema);
