@@ -15,9 +15,13 @@ const reminderSchema = new mongoose.Schema({
         required: true
     },
   
+  
     notesSchema:{
         type:String,
         required:true
+    },
+    location:{
+        type:String
     },
     ReminderType:{
         type:String,
