@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const router = express.Router();
+
+30
 const auth = require('../auth');
 
 router.post('/signup', (req, res, next) => {
@@ -56,5 +58,8 @@ router.put('/me', auth.verifyUser, (req, res, next) => {
             res.json({ _id: user._id, firstName: req.user.firstName, lastName: req.user.lastName, username: user.username, image: user.image });
         }).catch(next);
 });
+
+
+
 
 module.exports = router;

@@ -2,12 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require('morgan');
 const userRouter = require('./routes/users');
+const reminderRouter = require('./routes/reminder');
 const dotenv = require('dotenv').config();
 const auth = require('./auth');
 const cors = require('cors');
 
 const app = express();
 app.options('*', cors());
+app.use(cors());
 //app.use(morgan('tiny'));
 app.use(express.json());
 app.use(express.static(__dirname + "/public"));
@@ -19,6 +21,8 @@ mongoose.connect(process.env.URL,{ useNewUrlParser:true,useUnifiedTopology:true,
 
 
 app.use('/users', userRouter);
+app.use('/rem',reminderRouter);
+
 app.use(auth.verifyUser);
 
 
