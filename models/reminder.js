@@ -11,6 +11,9 @@ const reminder = mongoose.model('reminder',{
     date: {
         type: String
     },
+   time:{
+    type:String
+   },
     notesSchema:{
         type:String
     },
