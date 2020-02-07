@@ -10,15 +10,29 @@ router.post('/addevent', function(req, res){
     console.log(req.body);
     const mydata = new reminder(req.body)
     mydata.save().then(function(){
-    res.send('show event sucessful')
+    res.send('event is sucessfully added')
     }).catch(function(e){
     res.send(e)
     
     }) 
     })
 
+    router.put('/updateevent/:eventid', function(req, res){
+        reminder.findOneAndUpdate({_id :req.params.eventid}, req.body).then(function(){
+            res.send("Event is updated")
+        }).catch(function(){ 
+            res.send("error")
+        }) 
+    })
 
-    
-    
-    
+    router.delete('/deleteevent/:eventid', function(req, res){
+        console.log(req.params.eventid);
+        reminder.findByIdAndDelete(req.params.showid).then(function(){
+            res.send("Event is deleted")
+        }).catch(function(){ 
+            res.send(e)
+        })
+        })
+      
+  
 module.exports = router;
