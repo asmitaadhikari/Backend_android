@@ -25,14 +25,5 @@ router.post('/addevent', function(req, res){
         }) 
     })
 
-    router.delete('/deleteevent/:eventid', function(req, res){
-        console.log(req.params.eventid);
-        reminder.findByIdAndDelete(req.params.showid).then(function(){
-            res.send("Event is deleted")
-        }).catch(function(){ 
-            res.send(e)
-        })
-        })
-      
   
 module.exports = router;
