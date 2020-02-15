@@ -14,8 +14,8 @@ router.post('/signup', (req, res, next) => {
             throw new Error('Could not hash!');
         }
         User.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
+            fname: req.body.fname,
+            lname: req.body.lname,
             username: req.body.username,
             password: hash,
             image: req.body.image
@@ -49,13 +49,13 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/me', auth.verifyUser, (req, res, next) => {
-    res.json({ _id: req.user._id, firstName: req.user.firstName, lastName: req.user.lastName, username: req.user.username, image: req.user.image });
+    res.json({ _id: req.user._id, fname: req.user.fname, lname: req.user.lname, username: req.user.username, image: req.user.image });
 });
 
 router.put('/me', auth.verifyUser, (req, res, next) => {
     User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
         .then((user) => {
-            res.json({ _id: user._id, firstName: req.user.firstName, lastName: req.user.lastName, username: user.username, image: user.image });
+            res.json({ _id: user._id, fname: req.user.fname, lname: req.user.lname, username: user.username, image: user.image });
         }).catch(next);
 });
 

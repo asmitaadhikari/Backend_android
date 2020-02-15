@@ -4,14 +4,14 @@ const mongoose=require('mongoose');
 const router=express.Router();
 
 
-
-
 router.post('/addevent', function(req, res){   
     console.log(req.body);
     const mydata = new reminder(req.body)
-    mydata.save().then(function(){
+    mydata.save()
+    .then(function(){
     res.send('event is sucessfully added')
-    }).catch(function(e){
+    })
+    .catch(function(e){
     res.send(e)
     
     }) 
@@ -25,14 +25,24 @@ router.post('/addevent', function(req, res){
         }) 
     })
 
-    router.delete('/deleteevent/:eventid', function(req, res){
+
+    router.delete('/deleteevent/:eventid',require("../auth").verifyUser, function(req, res){
         console.log(req.params.eventid);
-        reminder.findByIdAndDelete(req.params.showid).then(function(){
+        reminder.findByIdAndDelete(req.params.eventid).then(function(){
             res.send("Event is deleted")
         }).catch(function(){ 
             res.send(e)
         })
         })
+     
 
+            router.get('/selectevent', function(req, res,next){
+                reminder.find({})
+                .then((Reminder)=>{
+                    res.json(Reminder);
+
+                }).catch(next);
+            }
+        );
   
-module.exports = router;
+ module.exports = router;
